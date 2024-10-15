@@ -1,0 +1,87 @@
+/* Styles for the title */
+.title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 1em;
+  }
+  
+  /* Container for product details */
+  .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2em;
+    gap: 2em;
+  }
+  
+  /* Left side styling */
+  .product-leftside {
+    flex: 1;
+    margin: 0 2em;
+    text-align: center;
+  }
+  
+  .product-leftside img {
+    height: 400px;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Accordion styling */
+  .accordion {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .accordion-header {
+    background-color: #f7f7f7;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .accordion-header:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .accordion-content {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Right side styling */
+  .product-rightside {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Button box styling */
+  .btn-boxs {
+    margin-top: 15px;
+  }
+  
+  .btn-boxs button {
+    padding: 1em 2em;
+    border-radius: 20px;
+    margin-right: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  #btn-1 {
+    background-color: black;
+  }
+  
+  #btn-2 {
+    background-color: #28a745;
+  }
+  
+  .btn-boxs button:hover {
+    opacity: 0.8;
+  }
+  

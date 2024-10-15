@@ -1,0 +1,27 @@
+.product-card{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    gap: 2em;
+}
+.product-details{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+}
+.h2{
+    text-align: center;
+    margin-bottom: 1em;
+}
+.product-card h2{
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 1em;
+}
+.product-card img{
+    height: 300px;
+    width: 300px;
+    object-fit: contain;
+    margin-bottom: 1em;
+}
