@@ -1,11 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import UseMemo from "./Hooks/UseMemo.jsx";
-import Data from "./components/data.jsx";
+import Dash from "./Website/Dash.jsx";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-     <Data/>
+     <Dash/>
     </StrictMode>
  
 );

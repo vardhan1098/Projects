@@ -1,0 +1,74 @@
+.container {
+    border: 1px solid black;
+    display: flex;
+    height: 100vh;
+}
+
+.left_side {
+    border: 1px solid brown;
+    background: red;
+    flex: 0.2;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    border: 1px solid black;
+    background: yellow;
+    flex: 0.6;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right_side {
+    border: 1px solid black;
+    flex: 0.2;
+    background: purple;
+    position: relative; /* This makes the container a reference point for absolute positioning */
+    padding: 20px;
+    color: white;
+}
+
+.right_under {
+    border: 1px solid white;
+    padding: 10px;
+    position: absolute;
+    left: 50%;        /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for perfect horizontal centering */
+    text-align: center;
+}
+
+/* Positioning classes for .right_under */
+.top {
+    top: 1; 
+}
+
+.centered {
+    top: 50%; /* Centers .right_under vertically */
+    transform: translate(-50%, -50%);
+}
+
+.bottom {
+    bottom: 0; /* Positions .right_under at the bottom */
+}
+@media (max-width:860px) {
+    .container{
+        display: flex;
+    }
+   .right_side{
+    /*it should be under container for this */
+   }
+}
+
+
+@media (max-width:680px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
