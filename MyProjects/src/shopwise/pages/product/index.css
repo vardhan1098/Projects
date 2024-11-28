@@ -1,0 +1,38 @@
+.product-container{
+    display: flex;
+    justify-content: center;
+}
+.left-card{
+    display: flex;
+    margin-bottom: 5px;
+    flex-direction: column;
+    align-items:start;
+    justify-content: left;
+}
+.left-side{
+    flex: 0.3;
+    position: fixed;
+    top: 20;
+    height: 100vh;
+    left: 0;
+    margin-left: 10px;
+    width: 13%;
+    border: 1px solid black;
+}
+.right-side{
+    flex:0.7;
+    display: flex;
+    gap: 1em;
+    margin: 0.5em;
+    padding: 0.5em;
+    flex-wrap: wrap;
+    border:1px solid black
+}
+.card-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 45.3%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    flex-direction: column;
+}
