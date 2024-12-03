@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: blanchedalmond;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+}
+ul>li{
+    padding: 8px;
+}
+.nav-btn>.cart-btn{
+    padding: 6px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
