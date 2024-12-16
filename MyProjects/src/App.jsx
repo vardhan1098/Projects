@@ -1,14 +1,13 @@
-import React from "react";
-import Todo from "./components/Todo";
-import { Provider } from "react-redux";
-import store from "./redux/store/Store";
+import React from 'react';
+import NavBar from './Projects/NavBar';
 
-function App() {
+const App = () => {
   return (
-    <Provider store={store}>
-      <Todo />
-    </Provider>
+    <>
+      <NavBar/>
+      
+    </>
   );
-}
+};
 
 export default App;
