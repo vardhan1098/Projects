@@ -41,7 +41,9 @@ const SignUp = () => {
     <form onSubmit={handleSubmit} style={styles.form}>
       <h2 style={styles.heading}>Sign Up</h2>
       <div style={styles.field}>
-        <label style={styles.label} htmlFor="userName">Full Name:</label>
+        <label style={styles.label} htmlFor="userName">
+          Full Name:
+        </label>
         <input
           style={styles.input}
           type="text"
@@ -52,7 +54,9 @@ const SignUp = () => {
         />
       </div>
       <div style={styles.field}>
-        <label style={styles.label} htmlFor="email">Email:</label>
+        <label style={styles.label} htmlFor="email">
+          Email:
+        </label>
         <input
           style={styles.input}
           type="email"
@@ -63,7 +67,9 @@ const SignUp = () => {
         />
       </div>
       <div style={styles.field}>
-        <label style={styles.label} htmlFor="password">Password:</label>
+        <label style={styles.label} htmlFor="password">
+          Password:
+        </label>
         <input
           style={styles.input}
           type="password"
@@ -73,10 +79,9 @@ const SignUp = () => {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" style={styles.button}>Sign Up</button>
-      <p style={styles.toggleText}>
-        Already have an account? <span style={styles.toggleLink}>Login</span>
-      </p>
+      <button type="submit" style={styles.button}>
+        Sign Up
+      </button>
     </form>
   );
 };
@@ -129,7 +134,7 @@ const styles = {
   toggleLink: {
     color: "#007bff",
     cursor: "pointer",
-  }
+  },
 };
 
 export default SignUp;

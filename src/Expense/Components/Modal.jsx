@@ -49,8 +49,23 @@ const Modal = ({ onClose }) => {
         >
           &times;
         </button>
-        {showSignUp ? <SignUp onClose={onClose} /> : <Login onClose={onClose} />}
-        <button onClick={toggleForm} style={{ marginTop: "10px" }}>
+        {showSignUp ? (
+          <SignUp onClose={onClose} />
+        ) : (
+          <Login onClose={onClose} />
+        )}
+        <button
+          onClick={toggleForm}
+          style={{
+            marginTop: "10px",
+            padding: "7px 10px",
+            backgroundColor: "black",
+            color: "white",
+            borderRadius: "5px",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
           {showSignUp ? "Switch to Login" : "Switch to Sign Up"}
         </button>
       </div>

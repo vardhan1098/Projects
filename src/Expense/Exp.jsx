@@ -4,10 +4,11 @@ import { FaEdit } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./Components/NavBar";
-import {  onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Modal from "./Components/Modal";
 import ExpenseImg from '../assets/Logo.png';
+import "./Exp.css"; // Separate CSS file for better structure
 
 function Exp() {
   const [expensive, setExpensive] = useState("");
@@ -36,7 +37,7 @@ function Exp() {
 
   const handleAddExpensive = () => {
     if (!currentUser) {
-      setIsModalOpen(true); 
+      setIsModalOpen(true);
       return;
     }
 
@@ -47,7 +48,7 @@ function Exp() {
         id: new Date().getTime(),
         title: expensive,
         price: amount,
-        date: date
+        date: date,
       };
       if (isEditing) {
         handleSaveEdit(newExpensive);
@@ -106,130 +107,65 @@ function Exp() {
       <NavBar clearExpenses={clearExpenses} />
       <ToastContainer />
       {isModalOpen && <Modal onClose={handleCloseModal} />}
-      <div
-        style={{
-          backgroundColor: "#2A3663",
-          color: "white",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "10px",
-          marginBottom: "20px",
-          gap: "10px",
-          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", gap: "40px" }}>
-          <h1 style={{ textAlign: "center", fontSize: "35px" }}>
-            Expense Calculator
-          </h1>
-          <h4 style={{ textAlign: "center", fontSize: "25px" }}> Total Price : ₹ {totalPrice.toFixed(2)}</h4>
+      <div className="header-container">
+        <div className="header-content">
+          <h1>Expense Calculator</h1>
+          <h4>Total Price : ₹ {totalPrice.toFixed(2)}</h4>
         </div>
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+        <div className="form-container">
           <input
             type="text"
             value={expensive}
-            style={{
-              height: "40px",
-              width: "300px",
-              borderRadius: "20px",
-              paddingLeft: "10px",
-            }}
+            className="form-input"
             name="title"
-            autoFocus
             placeholder="Enter an Expense"
             onChange={(e) => setExpensive(e.target.value)}
           />
           <input
             type="number"
             value={amount}
+            className="form-input"
             name="price"
-            style={{
-              height: "40px",
-              width: "200px",
-              borderRadius: "20px",
-              paddingLeft: "10px",
-            }}
             onChange={(e) => setAmount(Number(e.target.value))}
           />
           <input
             type="date"
             value={date}
+            className="form-input"
             onChange={(e) => setDate(e.target.value)}
-            style={{
-              height: "40px",
-              width: "200px",
-              borderRadius: "20px",
-              paddingLeft: "10px",
-            }}
           />
           <button
-            style={{
-              padding: "5px 10px",
-              backgroundColor: isEditing ? "orange" : "green",
-              color: "white",
-              border: "none",
-              cursor: "pointer",
-              borderRadius: "15px",
-            }}
+            className={`form-button ${isEditing ? "edit-button" : "add-button"}`}
             onClick={handleAddExpensive}
           >
             {isEditing ? "Save Expense" : "Add Expense"}
           </button>
         </div>
       </div>
-      <div>
-        {expList.length > 0 &&
+      <div className="expenses-container">
+        {expList.length > 0 ? (
           expList.map((list, idx) => (
-            <div
-              key={idx}
-              style={{
-                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-                marginBottom: "20px",
-                padding: "10px",
-                backgroundColor: "#FFF6E9",
-                color: "black",
-                display: "flex",
-                alignContent: "center",
-                justifyContent: "space-around",
-              }}
-            >
-              <h2>
-                {list.title.charAt(0).toUpperCase() + list.title.slice(1)}
-              </h2>
-              <h2>{list.price}</h2>
-              <h3>Date: {list.date}</h3> {/* Display the date */}
-              <div style={{ display: "flex", gap: "10px" }}>
-                <button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleEdit(list)}
-                >
-                  <FaEdit size={35} color="blue" />
-                </button>
-                <button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    handleDelete(list.id);
-                  }}
-                >
-                  <MdDeleteOutline size={35} color="red" />
-                </button>
+            <div key={idx} className="expense-item">
+              <h2>{list.title.charAt(0).toUpperCase() + list.title.slice(1)}</h2>
+              <h2>₹ {list.price}</h2>
+              <h3>Date: {list.date}</h3>
+              <div className="action-buttons">
+                <FaEdit size={25} color="blue" onClick={() => handleEdit(list)} />
+                <MdDeleteOutline
+                  size={25}
+                  color="red"
+                  onClick={() => handleDelete(list.id)}
+                />
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="empty-expenses">
+            <h3>Please Add the Expenses.</h3>
+            <img src={ExpenseImg} alt="No Expenses" className="empty-img" />
+          </div>
+        )}
       </div>
-      {expList.length > 0 ? (
-        <h3>Total Price: {totalPrice}</h3>
-      ) : (
-        <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-        <h3
-          style={{ textAlign: "center", fontSize: "25px", fontWeight: "bold" }}
-        >
-          Please Add the Expenses.
-        </h3>
-        <img src={ExpenseImg} alt="" width={800}  />   
-        </div>
-      )}
     </>
   );
 }

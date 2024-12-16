@@ -3,10 +3,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase-config";
 import Modal from "./Modal";
+import "../Components/Nav.css";
 
 const NavBar = ({ clearExpenses }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [isToggle, setIsToggle] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -16,12 +18,20 @@ const NavBar = ({ clearExpenses }) => {
     return () => unsubscribe();
   }, []);
 
+  const handleNavClose =()=>{
+    setIsToggle(false)
+  }
+
   const handleOpen = () => {
     setIsModalOpen(true);
   };
 
   const handleClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleToggle = () => {
+    setIsToggle(!isToggle);
   };
 
   const handleLogout = async () => {
@@ -43,73 +53,41 @@ const NavBar = ({ clearExpenses }) => {
 
   return (
     <>
-      <header
-        style={{
-          display: "flex",
-          position: "sticky",
-          top: "5px",
-          alignItems: "center",
-          backgroundColor: "#F29F58",
-          justifyContent: "space-around",
-        }}
-      >
-        <h2>Expense +</h2>
-        <nav style={{ display: "flex", listStyle: "none" }}>
-          <ul style={{ display: "flex", listStyle: "none", padding: "5px" }}>
-            <li style={{ padding: "5px" }}>Home</li>
-            <li style={{ padding: "5px" }}>Expense</li>
-            <li style={{ padding: "5px" }}>Contact</li>
+      <header className="navbar">
+        <div className="navbar-brand">
+          <h2>Expense +</h2>
+        </div>
+        <div className="nav-icon" onClick={handleToggle}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav className={`navbar-nav ${isToggle ? "show" : ""}`}>
+           {isToggle && <button className="close" onClick={handleNavClose}>x</button>}
+          <ul className="navbar-links">
+            <li>Home</li>
+            <li>Expense</li>
+            <li>Contact</li>
           </ul>
         </nav>
-        {user ? (
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span style={styles.userIcon}>{getUserInitial()}</span>
-            <button style={styles.logoutButton} onClick={handleLogout}>
-              Logout
+        <div className="navbar-auth">
+          {user ? (
+            <div className="auth-user">
+              <span className="user-icon">{getUserInitial()}</span>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button className="login-button" onClick={handleOpen}>
+              <FaUserAlt size={20} />
             </button>
-          </div>
-        ) : (
-          <button
-            style={styles.loginButton}
-            onClick={handleOpen}
-          >
-            <FaUserAlt size={20} />
-          </button>
-        )}
+          )}
+        </div>
       </header>
       {isModalOpen && <Modal onClose={handleClose} />}
     </>
   );
-};
-
-const styles = {
-  loginButton: {
-    padding: "2px 4px",
-    backgroundColor: "black",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  logoutButton: {
-    padding: "2px 4px",
-    backgroundColor: "red",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-  userIcon: {
-    width: "35px",
-    height: "35px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "blue",
-    color: "white",
-    borderRadius: "50%",
-    fontSize: "20px",
-  }
 };
 
 export default NavBar;
